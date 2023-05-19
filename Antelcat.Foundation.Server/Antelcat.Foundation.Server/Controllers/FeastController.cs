@@ -10,7 +10,7 @@ namespace Antelcat.Foundation.Server.Controllers
         protected TIdentity Identity<TIdentity>() => (TIdentity)(identity ??= JwtExtension<TIdentity>.FromClaims(User.Claims)!);
         private object? identity;
 
-        [Autowired] protected IFeastLogger<FeastController> Logger { get; init; } = null!;
+        [Autowired] protected IAntelcatLogger<FeastController> Logger { get; init; } = null!;
     }
     
     
