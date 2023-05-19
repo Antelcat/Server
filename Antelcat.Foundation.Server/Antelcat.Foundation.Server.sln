@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Foundation.Server.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feast.RequestMapper", "..\extern\RequestMapper\Feast.RequestMapper\Feast.RequestMapper.csproj", "{A8B3BD02-196E-483C-81F0-FFF6C3643897}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Foundation.Core", "..\extern\Foundation-Core\Feast.Foundation\Antelcat.Foundation.Core\Antelcat.Foundation.Core.csproj", "{F65E5771-F6D8-460F-8C3A-8DF6FF104502}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Foundation.Core", "..\extern\Foundation-Core\Feast.Foundation.Core\Antelcat.Foundation.Core\Antelcat.Foundation.Core.csproj", "{F65E5771-F6D8-460F-8C3A-8DF6FF104502}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Foundation.Test", "..\extern\Foundation-Core\Feast.Foundation\Antelcat.Foundation.Test\Antelcat.Foundation.Test.csproj", "{33E4E24E-A0B2-4E4A-B6A3-DB8BBB52FC44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Foundation.Test", "..\extern\Foundation-Core\Feast.Foundation.Core\Antelcat.Foundation.Test\Antelcat.Foundation.Test.csproj", "{33E4E24E-A0B2-4E4A-B6A3-DB8BBB52FC44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

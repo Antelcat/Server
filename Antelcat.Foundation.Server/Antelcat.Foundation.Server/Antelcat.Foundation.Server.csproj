@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\extern\Foundation-Core\Feast.Foundation\Antelcat.Foundation.Core\Antelcat.Foundation.Core.csproj" />
+    <ProjectReference Include="..\..\extern\Foundation-Core\Feast.Foundation.Core\Antelcat.Foundation.Core\Antelcat.Foundation.Core.csproj" />
     <ProjectReference Include="..\..\extern\RequestMapper\Feast.RequestMapper\Feast.RequestMapper.csproj" />
   </ItemGroup>
 
