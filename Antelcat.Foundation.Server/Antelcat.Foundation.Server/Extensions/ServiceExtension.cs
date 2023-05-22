@@ -65,7 +65,7 @@ namespace Antelcat.Foundation.Server.Extensions
                     };
                 });
         }
-
+        
     }
 
     public static partial class ServiceExtension
