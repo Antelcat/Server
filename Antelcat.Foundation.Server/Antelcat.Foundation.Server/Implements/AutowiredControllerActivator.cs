@@ -9,17 +9,16 @@ public abstract class ControllerActivatorBase<TServiceProvider> : IControllerAct
     where TServiceProvider : IServiceProvider
 {
     protected abstract TServiceProvider ProvideService(IServiceProvider provider);
-    public object Create(ControllerContext context)
+    public object Create(ControllerContext? context)
     {
         if (context == null)
             throw new ArgumentNullException($"{nameof(ControllerContext)} is null");
-        var type = context.ActionDescriptor.ControllerTypeInfo.AsType();
         var provider = context.HttpContext.RequestServices;
         if (provider is not TServiceProvider)
             provider = ProvideService(context.HttpContext.RequestServices);
-        return provider.GetRequiredService(type);
+        return provider.GetRequiredService(context.ActionDescriptor.ControllerTypeInfo.AsType());
     }
-    public void Release(ControllerContext context, object controller)
+    public void Release(ControllerContext? context, object controller)
     {
         if (context == null) throw new ArgumentNullException($"{nameof(ControllerContext)} is null");
         switch (controller)
@@ -33,14 +32,11 @@ public abstract class ControllerActivatorBase<TServiceProvider> : IControllerAct
     }
 }
 
-public class AutowiredControllerActivator<TAttribute> : ControllerActivatorBase<AutowiredServiceProvider<TAttribute>> 
+public class AutowiredControllerActivator<TAttribute> 
+    : ControllerActivatorBase<TransientAutowiredServiceProvider<TAttribute>> 
     where TAttribute : Attribute
 {
-    protected override AutowiredServiceProvider<TAttribute> ProvideService(IServiceProvider provider) => new(provider);
-}
-
-public class CachedAutowiredControllerActivator<TAttribute> : ControllerActivatorBase<CachedAutowiredServiceProvider<TAttribute>> 
-    where TAttribute : Attribute
-{
-    protected override CachedAutowiredServiceProvider<TAttribute> ProvideService(IServiceProvider provider) => new(provider);
+    protected override TransientAutowiredServiceProvider<TAttribute> ProvideService(
+        IServiceProvider provider) =>
+        new(provider);
 }
