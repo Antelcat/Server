@@ -5,7 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Antelcat.Foundation.Server.Implements;
 
-public abstract class ControllerActivatorBase<TServiceProvider> : IControllerActivator where TServiceProvider : IServiceProvider
+public abstract class ControllerActivatorBase<TServiceProvider> : IControllerActivator 
+    where TServiceProvider : IServiceProvider
 {
     protected abstract TServiceProvider ProvideService(IServiceProvider provider);
     public object Create(ControllerContext context)
@@ -32,12 +33,14 @@ public abstract class ControllerActivatorBase<TServiceProvider> : IControllerAct
     }
 }
 
-public class AutowiredControllerActivator<TAttribute> : ControllerActivatorBase<AutowiredServiceProvider<TAttribute>> where TAttribute : Attribute
+public class AutowiredControllerActivator<TAttribute> : ControllerActivatorBase<AutowiredServiceProvider<TAttribute>> 
+    where TAttribute : Attribute
 {
     protected override AutowiredServiceProvider<TAttribute> ProvideService(IServiceProvider provider) => new(provider);
 }
 
-public class CachedAutowiredControllerActivator<TAttribute> : ControllerActivatorBase<CachedAutowiredServiceProvider<TAttribute>> where TAttribute : Attribute
+public class CachedAutowiredControllerActivator<TAttribute> : ControllerActivatorBase<CachedAutowiredServiceProvider<TAttribute>> 
+    where TAttribute : Attribute
 {
     protected override CachedAutowiredServiceProvider<TAttribute> ProvideService(IServiceProvider provider) => new(provider);
 }
