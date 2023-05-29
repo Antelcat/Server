@@ -9,7 +9,7 @@ namespace Feast.Foundation.Server.Test.Controllers
     [ApiController]
     [Route("[controller]/[action]")]
     [Authorize]
-    public class WeatherForecastController : FeastController
+    public class WeatherForecastController : BaseController
     {
         private static readonly string[] Summaries = new[]
         {
