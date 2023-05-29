@@ -7,7 +7,7 @@ using Antelcat.Foundation.Server.Extensions;
 
 namespace Antelcat.Foundation.Server.Utils;
 
-public class JwtConfigure<TIdentity>
+public class JwtConfigure<TIdentity> where TIdentity : class
 {
     public JwtConfigure(Action<TokenValidationParameters>? paramConfig = null)
     {
@@ -36,9 +36,8 @@ public class JwtConfigure<TIdentity>
         signingCredentials: credentials,
         notBefore: DateTime.Now);
 
-    public TokenValidationParameters Parameters
-    {
-        get => parameters ??= new()
+    public TokenValidationParameters Parameters =>
+        parameters ??= new TokenValidationParameters()
         {
             ValidIssuer = Assembly.GetExecutingAssembly().GetName().Name,
             ValidAudience = Assembly.GetExecutingAssembly().GetName().Name,
@@ -49,8 +48,6 @@ public class JwtConfigure<TIdentity>
             ValidateIssuerSigningKey = true,
             ClockSkew = TimeSpan.Zero
         };
-        init => parameters = value;
-    }
 
     private readonly JwtSecurityTokenHandler handler = new();
     private TokenValidationParameters? parameters;
@@ -58,7 +55,7 @@ public class JwtConfigure<TIdentity>
     {
         try
         {
-            return handler.WriteToken(GetToken(JwtExtension<TIdentity>.GetClaims(source)));
+            return handler.WriteToken(GetToken(source.GetClaims()));
         }
         catch
         {
