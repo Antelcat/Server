@@ -12,7 +12,7 @@ namespace Feast.Foundation.Server.Test.Controllers
     [Route("[controller]/[action]")]
     [Authorize]
 
-    public class HomeController : FeastController<User>
+    public class HomeController : BaseController<User>
     {
         private JwtConfigure<User> configure;
 
