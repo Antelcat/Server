@@ -1,8 +1,13 @@
-﻿using Antelcat.Foundation.Core.Extensions;
+﻿using System.Reflection;
+using System.Security.Claims;
+using Antelcat.Foundation.Core.Extensions;
 using Antelcat.Foundation.Core.Models;
 using Antelcat.Foundation.Server.Controllers;
+using Antelcat.Foundation.Server.Extensions;
 using Antelcat.Foundation.Server.Utils;
 using Feast.Foundation.Server.Test.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +30,9 @@ namespace Feast.Foundation.Server.Test.Controllers
         [AllowAnonymous]
         public Response<string> Login([FromBody]User user)
         {
-            return new Response<string>(configure.CreateToken(user)!);
+            var token = configure.CreateToken(user)!;
+            Response.Cookies.Append("Authorization", $"Bearer {token}");
+            return new Response<string>(token);
         }
         
         [HttpPost]
