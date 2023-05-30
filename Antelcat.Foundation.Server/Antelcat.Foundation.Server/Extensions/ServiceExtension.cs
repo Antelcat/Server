@@ -13,6 +13,7 @@ using Antelcat.Foundation.Server.Implements;
 using Antelcat.Foundation.Server.Utils;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Logging;
 
 
 namespace Antelcat.Foundation.Server.Extensions;
@@ -21,12 +22,13 @@ public static partial class ServiceExtension
 {
     public static void ConfigureJwt<TIdentity>(
         this IServiceCollection services,
-        Action<TokenValidationParameters>? configure = null,
-        Func<TIdentity, Task>? validation = null,
+        Action<JwtConfigure<TIdentity>>? configure = null,
+        Func<TIdentity,TokenValidatedContext, Task>? validation = null,
         Func<JwtBearerChallengeContext, string>? failed = null)
         where TIdentity : class ,new()
     {
-        var config = new JwtConfigure<TIdentity>(configure);
+        var config = new JwtConfigure<TIdentity>();
+        configure?.Invoke(config);
         services
             .AddSingleton(config)
             .AddAuthentication(static options =>
@@ -42,15 +44,19 @@ public static partial class ServiceExtension
                 {
                     OnTokenValidated = validation == null
                         ? static _ => Task.CompletedTask
-                        : static async context =>
+                        : async context =>
                         {
                             var token = (context.SecurityToken as JwtSecurityToken)!.RawData;
-                            if (new TIdentity().FromToken(token) == null)
+                            var identity = new TIdentity().FromToken(token);
+                            if (identity == null)
                             {
                                 context.Fail(
                                     new NullReferenceException($"Cannot resolve {typeof(TIdentity)} from token"));
                             }
-                            await Task.CompletedTask;
+                            else
+                            {
+                                await validation.Invoke(identity, context);
+                            }
                         },
 
                     OnChallenge = async context =>
