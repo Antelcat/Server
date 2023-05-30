@@ -16,8 +16,17 @@ namespace Feast.Foundation.Server.Test
                 .AddControllers()
                 .AddControllersAsServices()
                 .UseAutowiredControllers();
-            builder.Services.ConfigureJwt<User>(
-                failed: static _ => @"{ ""?"" : ""?"" }");
+            builder.Services.ConfigureJwt<User>(configure: jwt =>
+                {
+                    jwt.Secret = Guid.NewGuid().ToString();
+                },
+                validation: static async (id,context) => {
+                    if (id.Id < 0)
+                    {
+                       context.Fail("Jwt token invalid"); 
+                    }  
+                },
+            failed: static _ => @"{ ""?"" : ""?"" }");
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddJwtSwaggerGen();
