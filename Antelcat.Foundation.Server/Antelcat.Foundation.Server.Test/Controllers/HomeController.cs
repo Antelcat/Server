@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Security.Claims;
+using Antelcat.Foundation.Core.Attributes;
 using Antelcat.Foundation.Core.Extensions;
 using Antelcat.Foundation.Core.Models;
 using Antelcat.Foundation.Server.Controllers;
@@ -19,12 +20,9 @@ namespace Feast.Foundation.Server.Test.Controllers
 
     public class HomeController : BaseController<User>
     {
+        [Autowired]
         private JwtConfigure<User> configure;
 
-        public HomeController(JwtConfigure<User> configure)
-        {
-            this.configure = configure;
-        }
 
         [HttpPost]
         [AllowAnonymous]
