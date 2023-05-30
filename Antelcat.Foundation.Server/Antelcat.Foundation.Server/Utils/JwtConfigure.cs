@@ -9,25 +9,24 @@ namespace Antelcat.Foundation.Server.Utils;
 
 public class JwtConfigure<TIdentity> where TIdentity : class
 {
-    public JwtConfigure(Action<TokenValidationParameters>? paramConfig = null)
+    public JwtConfigure()
     {
         Secret = Guid.NewGuid().ToString();
-        paramConfig?.Invoke(Parameters);
     }
   
-    public string Secret { init => SecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(value)); }
+    public string Secret { set => SecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(value)); }
 
     private SecurityKey? SecurityKey
     {
         get => securityKey;
-        init
+        set
         {
             securityKey = value;
             credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         }
     }
-    private readonly SecurityKey? securityKey;
-    private readonly SigningCredentials? credentials;
+    private SecurityKey? securityKey;
+    private SigningCredentials? credentials;
 
     private JwtSecurityToken GetToken(IEnumerable<Claim?> claims) => new(
         Parameters.ValidIssuer,
