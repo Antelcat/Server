@@ -1,14 +1,9 @@
-﻿using System.Reflection;
-using System.Security.Claims;
-using Antelcat.Foundation.Core.Attributes;
-using Antelcat.Foundation.Core.Extensions;
-using Antelcat.Foundation.Core.Models;
+﻿using Antelcat.Attributes;
+using Antelcat.Core.Extensions;
+using Antelcat.Core.Models;
 using Antelcat.Foundation.Server.Controllers;
-using Antelcat.Foundation.Server.Extensions;
-using Antelcat.Foundation.Server.Utils;
+using Antelcat.Utils;
 using Feast.Foundation.Server.Test.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

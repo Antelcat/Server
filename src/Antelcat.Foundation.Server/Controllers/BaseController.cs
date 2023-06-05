@@ -1,6 +1,6 @@
-﻿using Antelcat.Foundation.Core.Attributes;
-using Antelcat.Foundation.Core.Interface.Logging;
-using Antelcat.Foundation.Server.Extensions;
+﻿using Antelcat.Attributes;
+using Antelcat.Core.Interface.Logging;
+using Antelcat.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Antelcat.Foundation.Server.Controllers;

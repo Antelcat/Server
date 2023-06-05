@@ -1,5 +1,5 @@
 using Antelcat.Foundation.Server.Controllers;
-using Antelcat.Foundation.Server.Utils;
+using Antelcat.Utils;
 using Feast.Foundation.Server.Test.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

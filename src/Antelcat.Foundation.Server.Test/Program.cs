@@ -1,4 +1,5 @@
-using Antelcat.Foundation.Core.Extensions;
+using Antelcat.Core.Extensions;
+using Antelcat.Extensions;
 using Antelcat.Foundation.Server.Extensions;
 using Feast.Foundation.Server.Test.Models;
 
