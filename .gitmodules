@@ -1,3 +1,6 @@
 [submodule "extern/RequestMapper"]
 	path = extern/RequestMapper
 	url = https://github.com/feast107/RequestMapper.git
+[submodule "extern/Core"]
+	path = extern/Core
+	url = https://github.com/Antelcat/Core.git/
