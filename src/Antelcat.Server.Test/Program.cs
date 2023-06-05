@@ -1,9 +1,9 @@
 using Antelcat.Core.Extensions;
 using Antelcat.Extensions;
-using Antelcat.Foundation.Server.Extensions;
-using Feast.Foundation.Server.Test.Models;
+using Antelcat.Server.Extensions;
+using Antelcat.Server.Test.Models;
 
-namespace Feast.Foundation.Server.Test
+namespace Antelcat.Server.Test
 {
     public class Program
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Feast.Foundation.Server.Test.Models
+namespace Antelcat.Server.Test.Models
 {
     public class User
     {

@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Net;
+using Antelcat.Server.Filters;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using System.Net;
-using Antelcat.Foundation.Server.Filters;
 
-namespace Antelcat.Foundation.Server.Extensions;
+namespace Antelcat.Server.Extensions;
 
 public static partial class ServiceExtension
 {

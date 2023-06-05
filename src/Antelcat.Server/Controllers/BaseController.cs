@@ -3,7 +3,7 @@ using Antelcat.Core.Interface.Logging;
 using Antelcat.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Antelcat.Foundation.Server.Controllers;
+namespace Antelcat.Server.Controllers;
 
 public abstract class BaseController : Controller
 {

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Net;
 
-namespace Antelcat.Foundation.Server.Filters;
+namespace Antelcat.Server.Filters;
 
 public sealed class AuthorizationFilter : IOperationFilter
 {

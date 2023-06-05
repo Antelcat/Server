@@ -1,4 +1,4 @@
-namespace Feast.Foundation.Server.Test
+namespace Antelcat.Server.Test
 {
     public class WeatherForecast
     {

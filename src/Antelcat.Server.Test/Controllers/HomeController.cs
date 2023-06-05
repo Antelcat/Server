@@ -1,13 +1,14 @@
 ﻿using Antelcat.Attributes;
+using Antelcat.Core.Attributes;
 using Antelcat.Core.Extensions;
 using Antelcat.Core.Models;
-using Antelcat.Foundation.Server.Controllers;
+using Antelcat.Server.Controllers;
+using Antelcat.Server.Test.Models;
 using Antelcat.Utils;
-using Feast.Foundation.Server.Test.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Feast.Foundation.Server.Test.Controllers
+namespace Antelcat.Server.Test.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
