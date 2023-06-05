@@ -12,11 +12,9 @@ namespace Feast.Foundation.Server.Test.Controllers
     [ApiController]
     [Route("[controller]/[action]")]
     [Authorize]
-
     public class HomeController : BaseController<User>
     {
-        [Autowired]
-        private JwtConfigure<User> configure;
+        [Autowired] private readonly JwtConfigure<User> configure = null!;
 
 
         [HttpPost]
