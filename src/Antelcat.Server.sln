@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Foundation.Server", "Antelcat.Foundation.Server\Antelcat.Foundation.Server.csproj", "{D2B51300-EC06-4F56-A78A-5EC554CC3F4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Server", "Antelcat.Server\Antelcat.Server.csproj", "{D2B51300-EC06-4F56-A78A-5EC554CC3F4F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Foundation.Server.Test", "Antelcat.Foundation.Server.Test\Antelcat.Foundation.Server.Test.csproj", "{FC86124E-813F-4B5E-A5BE-202EA43C83E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Server.Test", "Antelcat.Server.Test\Antelcat.Server.Test.csproj", "{FC86124E-813F-4B5E-A5BE-202EA43C83E4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feast.RequestMapper", "..\extern\RequestMapper\Feast.RequestMapper\Feast.RequestMapper.csproj", "{A8B3BD02-196E-483C-81F0-FFF6C3643897}"
 EndProject
@@ -79,5 +79,6 @@ Global
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\IL\Antelcat.Shared.IL.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Runtime.CompileService\Antelcat.Shared.Runtime.CompileService.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Serialization\Antelcat.Shared.Serialization.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\TypeConvert\Antelcat.Shared.TypeConvert.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

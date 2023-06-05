@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Antelcat.Foundation.Server\Antelcat.Foundation.Server.csproj" />
+    <ProjectReference Include="..\Antelcat.Server\Antelcat.Server.csproj" />
   </ItemGroup>
 
 </Project>
