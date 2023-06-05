@@ -9,17 +9,6 @@ Reference to :
 
 ## Dependency-Injection
 
-Expanded extension from [AutowiredServiceProvider](./extern/Foundation-Core/Antelcat.Foundation.Core/Antelcat.Foundation.Core/Implements/Services/AutowiredServiceProvider.cs) of native [.NET dependency injection](https://github.com/dotnet/docs/blob/main/docs/core/extensions/dependency-injection.md) with [Autowired](./extern/Foundation-Core/Antelcat.Foundation.Core/Antelcat.Foundation.Core/Attributes/AutowiredAttribute.cs), provides a way to support properties and fields injection, especially on the server side.
-
-In [ASP.NET Core](https://github.com/dotnet/aspnetcore) :
-
-```c#
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers() //register controllers
-                .AddControllersAsServices() // add controllers as services
-                .UseAutowiredControllers(); // use auto wired controllers
-builder.Host.UseAutowiredServiceProviderFactory(); // autowired services
-```
 
 ## Authentication  
 

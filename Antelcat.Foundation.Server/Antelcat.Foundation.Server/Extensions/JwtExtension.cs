@@ -56,7 +56,7 @@ public static class JwtExtension<TIdentity> where TIdentity : class
         ReadableProps
             .Select(x =>
                 new Claim(x.Key, 
-                    (string?)x.Value.Item2.Back(x.Value.Item1.Invoke(identity)) ?? string.Empty));
+                    (string?)x.Value.Item2.From(x.Value.Item1.Invoke(identity)) ?? string.Empty));
 
     public static TIdentity FromClaims(TIdentity identity, IEnumerable<Claim> claims) =>
         claims.Aggregate(identity, SetFromClaim);
