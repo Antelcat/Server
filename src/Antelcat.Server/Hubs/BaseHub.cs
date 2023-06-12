@@ -10,3 +10,10 @@ public abstract class BaseHub : Hub
         => (TIdentity)(identity ??= new TIdentity().FromClaims(Context.User?.Claims ?? new List<Claim>()));
     private object? identity;
 }
+
+public abstract class BaseHub<T> : Hub<T> where T : class
+{
+    protected TIdentity Identity<TIdentity>() where TIdentity : class, new()
+        => (TIdentity)(identity ??= new TIdentity().FromClaims(Context.User?.Claims ?? new List<Claim>()));
+    private object? identity;
+}
