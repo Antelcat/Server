@@ -1,5 +1,4 @@
 ﻿using Antelcat.Attributes;
-using Antelcat.Core.Extensions;
 using Antelcat.Core.Interface.Logging;
 using Antelcat.Extensions;
 using Microsoft.AspNetCore.Mvc;

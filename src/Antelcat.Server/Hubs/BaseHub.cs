@@ -1,8 +1,6 @@
 ﻿using System.Security.Claims;
-using Antelcat.Core.Extensions;
 using Antelcat.Extensions;
 using Microsoft.AspNetCore.SignalR;
-using TypeExtension = Antelcat.Core.Extensions.TypeExtension;
 
 namespace Antelcat.Server.Hubs;
 
