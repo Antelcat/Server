@@ -67,9 +67,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.projitems*{409ad0c0-e7af-40f7-a52b-eaaf4a87cff8}*SharedItemsImports = 13
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\Authentication\Antelcat.Shared.Authentication.projitems*{8b3f6afb-8eac-4287-88b1-27ae63a8aa5d}*SharedItemsImports = 13
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\Authentication\Antelcat.Shared.Authentication.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.projitems*{d4f9ef9f-57e0-490a-89aa-b382bcc936e3}*SharedItemsImports = 13
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\Compare\Antelcat.Shared.Compare.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\DependencyInjection.Autowired\Antelcat.Shared.DependencyInjection.Autowired.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\DebugExtension\Antelcat.Shared.Extensions.DebugExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\EnumExtension\Antelcat.Shared.Extensions.EnumExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
@@ -79,6 +82,7 @@ Global
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\StringExtension\Antelcat.Shared.Extensions.StringExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\TaskExtension\Antelcat.Shared.Extensions.TaskExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\TimeExtension\Antelcat.Shared.Extensions.TimeExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\TypeExtension\Antelcat.Shared.Extensions.TypeExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\IL\Antelcat.Shared.IL.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Runtime.CompileService\Antelcat.Shared.Runtime.CompileService.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Serialization\Antelcat.Shared.Serialization.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
