@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -11,8 +12,15 @@ public sealed class AuthorizationFilter : IOperationFilter
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
         operation.Responses.Clear();
-        if (context.ApiDescription.ActionDescriptor is not ControllerActionDescriptor descriptor) return;
-        if (!WhetherActionNeedAuth(descriptor)) return;
+        switch (context.ApiDescription.ActionDescriptor)
+        {
+            case ControllerActionDescriptor descriptor:
+                if (!WhetherActionNeedAuth(descriptor)) return;
+                break;
+            default:
+                if (AnalyzeAuthRequired(context.ApiDescription.ActionDescriptor.EndpointMetadata) != 1) return;
+                break;
+        }
         operation.Parameters.Add(new OpenApiParameter
         {
             Name = nameof(Authorization),
