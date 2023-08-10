@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Antelcat.Server.Filters;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -20,5 +21,6 @@ public static partial class ServiceExtension
             });
         });
 
-   
+    public static IConfiguration GetConfiguration(this IServiceProvider serviceProvider) =>
+        serviceProvider.GetRequiredService<IConfiguration>();
 }
