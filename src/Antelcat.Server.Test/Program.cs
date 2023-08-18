@@ -1,6 +1,7 @@
 using Antelcat.Core.Extensions;
 using Antelcat.Extensions;
 using Antelcat.Server.Extensions;
+using Antelcat.Server.Test.Hubs;
 using Antelcat.Server.Test.Models;
 
 namespace Antelcat.Server.Test
@@ -31,6 +32,7 @@ namespace Antelcat.Server.Test
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddJwtSwaggerGen();
+            builder.Services.AddSignalR();
             builder.Host.UseAutowiredServiceProviderFactory();
             
             var app = builder.Build();
@@ -47,7 +49,7 @@ namespace Antelcat.Server.Test
             app.UseAuthorization();
 
             app.MapControllers();
-
+            app.MapHub<StreamHub>("/stream");
             app.Run();
         }
     }

@@ -30,8 +30,8 @@ namespace Antelcat.Server.Test.Controllers
         [HttpPost]
         public Response<User> WhoAmI()
         {
-            Logger.LogTrace($"{Identity}");
-            return Identity;
+            Logger.LogTrace($"{Identity<User>()}");
+            return Identity<User>();
         }
     }
 }
