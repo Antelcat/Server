@@ -4,8 +4,6 @@ using Antelcat.Extensions;
 using Antelcat.Server.Extensions;
 using Antelcat.Server.Test.Hubs;
 using Antelcat.Server.Test.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Antelcat.Server.Test
 {
