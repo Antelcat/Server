@@ -61,14 +61,10 @@ Reference to :
     );
     ```
 
-    when inherit from [BaseController](./Antelcat.Foundation.Server/Antelcat.Foundation.Server/Controllers/BaseController.cs), controllers can resolve identity like :
 
     ``` c#
     [ApiController]
     public class IdentityController : BaseController<IdentityController>{
-        
-        [Autowired]
-        private JwtConfigure<IdentityModel> configure;
 
         [HttpPost]
         [AllowAnonymous]

@@ -7,7 +7,7 @@ using Antelcat.Server.Test.Models;
 
 namespace Antelcat.Server.Test
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -39,6 +39,7 @@ namespace Antelcat.Server.Test
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
             builder.Services.AddJwtSwaggerGen();
+            builder.Services.AddAntelcatLogger();
             builder.Services.AddSignalR();
             builder.Host.UseAutowiredServiceProviderFactory();
 
