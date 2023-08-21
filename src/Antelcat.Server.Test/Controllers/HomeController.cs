@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using Antelcat.Attributes;
+﻿using Antelcat.Attributes;
 using Antelcat.Core.Extensions;
 using Antelcat.Core.Models;
 using Antelcat.Extensions;
@@ -23,16 +22,16 @@ namespace Antelcat.Server.Test.Controllers
 
         [HttpPost(nameof(JwtLogin))]
         [AllowAnonymous]
-        public Response<string> JwtLogin([FromBody]User user)
+        public Response<string> JwtLogin([FromBody] User user)
         {
             var token = configure.CreateToken(user)!;
             Response.Cookies.Append("Authorization", $"Bearer {token}");
             return new Response<string>(token);
         }
-        
+
         [HttpPost(nameof(CookieLogin))]
         [AllowAnonymous]
-        public async Task<Response> CookieLogin([FromBody]User user)
+        public async Task<Response> CookieLogin([FromBody] User user)
         {
             await SignInAsync(user, "User",
                 new AuthenticationProperties
@@ -41,7 +40,7 @@ namespace Antelcat.Server.Test.Controllers
                 });
             return (1, "登录成功");
         }
-        
+
         [HttpGet(nameof(CookieLogout))]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public async Task<Response> CookieLogout()
@@ -49,7 +48,7 @@ namespace Antelcat.Server.Test.Controllers
             await SignOutAsync();
             return (1, "登出成功");
         }
-        
+
         [HttpGet(nameof(WhoAmICookie))]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public Response<User> WhoAmICookie()
@@ -58,9 +57,18 @@ namespace Antelcat.Server.Test.Controllers
             Logger.LogTrace($"{user.Serialize()}");
             return user;
         }
-        
+
+        [HttpGet(nameof(DoctorAllowed))]
+        [Authorize(Roles = "Doctor", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        public Response<User> DoctorAllowed()
+        {
+            var user = Identity<User>();
+            Logger.LogTrace($"{user.Serialize()}");
+            return user;
+        }
+
         [HttpGet(nameof(WhoAmIJwt))]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Roles = "Doctor", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public Response<User> WhoAmIJwt()
         {
             var user = Identity<User>();

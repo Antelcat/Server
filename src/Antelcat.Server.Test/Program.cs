@@ -22,33 +22,30 @@ namespace Antelcat.Server.Test
                 .AddControllersAsServices()
                 .UseAutowiredControllers();
 
-            builder.Services.ConfigureCookie<User>(
-                configure: cookie =>
-                {
-                },
-                failed: static _ => ((Response)"失败").Serialize());
-            builder.Services.ConfigureJwt<User>(
-                configure: jwt =>
-                {
-                    jwt.Secret = Guid.NewGuid().ToString();
-                },
-                validation: static async (id, context) =>
-                {
-                    if (id.Id < 0)
+            builder.Services
+                .ConfigureCookie<User>(
+                    denied: static _ => ((Response)"权限不足").Serialize(),
+                    failed: static _ => ((Response)"失败").Serialize())
+                .ConfigureJwt<User>(
+                    configure: jwt => { jwt.Secret = Guid.NewGuid().ToString(); },
+                    validation: static async (id, context) =>
                     {
-                        context.Fail("Jwt token invalid");
-                    }
-                },
-                failed: static _ => ((Response)"失败").Serialize());
+                        if (id.Id < 0)
+                        {
+                            context.Fail("Jwt token invalid");
+                        }
+                    },
+                    denied: static _ => ((Response)"权限不足").Serialize(),
+                    failed: static _ => ((Response)"失败").Serialize());
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            //builder.Services.AddJwtSwaggerGen();
+            //builder.Services.AddSwaggerGen();
+            builder.Services.AddJwtSwaggerGen();
             builder.Services.AddSignalR();
             builder.Host.UseAutowiredServiceProviderFactory();
-            
+
             var app = builder.Build();
-            
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
