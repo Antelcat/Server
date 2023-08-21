@@ -41,7 +41,15 @@ namespace Antelcat.Server.Test.Controllers
                 });
             return (1, "登录成功");
         }
-
+        
+        [HttpGet(nameof(CookieLogout))]
+        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        public async Task<Response> CookieLogout()
+        {
+            await SignOutAsync();
+            return (1, "登出成功");
+        }
+        
         [HttpGet(nameof(WhoAmICookie))]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public Response<User> WhoAmICookie()
