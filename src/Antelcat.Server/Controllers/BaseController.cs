@@ -1,6 +1,9 @@
-﻿using Antelcat.Attributes;
+﻿using System.Security.Claims;
+using Antelcat.Attributes;
 using Antelcat.Core.Interface.Logging;
 using Antelcat.Extensions;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Antelcat.Server.Controllers;
@@ -8,10 +11,22 @@ namespace Antelcat.Server.Controllers;
 public abstract class BaseController<TCategory> : Controller
 {
     protected TIdentity Identity<TIdentity>() where TIdentity : class
-        => (TIdentity)(identity ??= typeof(TIdentity).RawInstance().FromClaims(User.Claims));
-    private object? identity;
+        => ((identityCache ??=  typeof(TIdentity).RawInstance<TIdentity>().FromClaims(User.Claims)) as TIdentity)!;
+    private object? identityCache;
 
     [Autowired] protected IAntelcatLogger<TCategory> Logger { get; init; } = null!;
+
+    protected Task SignInAsync<TIdentity>(TIdentity identity, 
+        string authenticationType,
+        AuthenticationProperties? properties = null,
+        string scheme = CookieAuthenticationDefaults.AuthenticationScheme)
+        where TIdentity : class
+    {
+        return Request.HttpContext.SignInAsync(scheme,
+            new ClaimsPrincipal(new ClaimsIdentity(identity.GetClaims(), authenticationType)), properties);
+    }
+
+    protected Task SignOutAsync() => Request.HttpContext.SignOutAsync();
 }
     
     
