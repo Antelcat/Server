@@ -22,6 +22,11 @@ namespace Antelcat.Server.Test
 
             builder.Services
                 .ConfigureCookie<User>(
+                    configure: cookie =>
+                    {
+                        cookie.HttpOnly = true;
+                        cookie.Name = $"{nameof(Antelcat)}_{nameof(Server)}";
+                    },
                     denied: static _ => ((Response)"权限不足").Serialize(),
                     failed: static _ => ((Response)"失败").Serialize())
                 .ConfigureJwt<User>(
