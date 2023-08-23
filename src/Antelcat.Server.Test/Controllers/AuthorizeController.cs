@@ -14,8 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Antelcat.Server.Test.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class HomeController : BaseController<HomeController>
+    [Route($"{nameof(Antelcat)}/[controller]")]
+    public class AuthorizeController : BaseController<AuthorizeController>
     {
         [Autowired] private readonly JwtConfigure<User> configure = null!;
 

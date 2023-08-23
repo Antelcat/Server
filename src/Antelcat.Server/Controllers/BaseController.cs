@@ -17,7 +17,7 @@ public abstract class BaseController<TCategory> : Controller
     [Autowired] protected IAntelcatLogger<TCategory> Logger { get; init; } = null!;
 
     protected Task SignInAsync<TIdentity>(TIdentity identity, 
-        string authenticationType,
+        string? authenticationType = "Identity.Application",
         AuthenticationProperties? properties = null,
         string scheme = CookieAuthenticationDefaults.AuthenticationScheme)
         where TIdentity : class
