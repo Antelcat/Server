@@ -28,7 +28,7 @@ namespace Antelcat.Server.Test
                         cookie.Name = $"{nameof(Antelcat)}_{nameof(Server)}";
                     },
                     denied: static _ => ((Response)"权限不足").Serialize(),
-                    failed: static _ => ((Response)"失败").Serialize())
+                    failed: static _ => ((Response)"未授权").Serialize())
                 .ConfigureJwt<User>(
                     configure: jwt => { jwt.Secret = Guid.NewGuid().ToString(); },
                     validation: static async (id, context) =>
@@ -39,7 +39,7 @@ namespace Antelcat.Server.Test
                         }
                     },
                     denied: static _ => ((Response)"权限不足").Serialize(),
-                    failed: static _ => ((Response)"失败").Serialize());
+                    failed: static _ => ((Response)"未授权").Serialize());
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
