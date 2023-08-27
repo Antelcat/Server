@@ -22,7 +22,6 @@
 
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.projitems" Label="Shared" />
 
-  <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\Authentication\Antelcat.Shared.Authentication.projitems" Label="Shared" />
 
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\Cookie\Antelcat.Shared.AspNetCore.Authentication.Cookie.projitems" Label="Shared" />
 

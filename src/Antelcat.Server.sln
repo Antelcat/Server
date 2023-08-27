@@ -23,8 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore", "AspNetCore", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{1EEB098E-00FC-44A0-9EAC-861FD97FE001}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Antelcat.Shared.Authentication", "..\extern\Core\extern\Antelcat.Shared\src\Shared\Authentication\Antelcat.Shared.Authentication.shproj", "{8B3F6AFB-8EAC-4287-88B1-27AE63A8AA5D}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Antelcat.Shared.AspNetCore.Authentication.Cookie", "..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\Cookie\Antelcat.Shared.AspNetCore.Authentication.Cookie.shproj", "{7D200D65-E7A7-464E-BC09-19D12869EEB9}"
 EndProject
 Global
@@ -62,7 +60,6 @@ Global
 		{409AD0C0-E7AF-40F7-A52B-EAAF4A87CFF8} = {1EEB098E-00FC-44A0-9EAC-861FD97FE001}
 		{8FD7B5E3-7F49-4E71-AD4F-08CD063CC8E0} = {AFAB2210-2573-4C71-A064-C66999E404BB}
 		{1EEB098E-00FC-44A0-9EAC-861FD97FE001} = {8FD7B5E3-7F49-4E71-AD4F-08CD063CC8E0}
-		{8B3F6AFB-8EAC-4287-88B1-27AE63A8AA5D} = {AFAB2210-2573-4C71-A064-C66999E404BB}
 		{7D200D65-E7A7-464E-BC09-19D12869EEB9} = {1EEB098E-00FC-44A0-9EAC-861FD97FE001}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
