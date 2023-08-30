@@ -11,7 +11,10 @@ namespace Antelcat.Server.Controllers;
 public abstract class BaseController<TCategory> : Controller
 {
     protected TIdentity Identity<TIdentity>() where TIdentity : class
-        => ((identityCache ??= typeof(TIdentity).RawInstance<TIdentity>().FromClaims(User.Claims)) as TIdentity)!;
+        => Identity(typeof(TIdentity).RawInstance<TIdentity>());
+    
+    protected TIdentity Identity<TIdentity>(TIdentity from) where TIdentity : class
+        => ((identityCache ??= from.FromClaims(User.Claims)) as TIdentity)!;
 
     private object? identityCache;
 
@@ -33,6 +36,5 @@ public abstract class BaseController<TCategory> : Controller
 
 public abstract class BaseController<TIdentity, TCategory> : BaseController<TCategory> where TIdentity : class, new()
 {
-    protected TIdentity Identity => identity ??= new TIdentity().FromClaims(User.Claims);
-    private TIdentity? identity;
+    protected TIdentity Identity => Identity(new TIdentity());
 }
