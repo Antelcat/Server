@@ -30,12 +30,14 @@ builder.Services
             jwt.Secret = guid;
             Console.WriteLine(guid);
         },
-        validation: static async (id, context) =>
+        validation: static (id, context) =>
         {
             if (id.Id < 0)
             {
                 context.Fail("Jwt token invalid");
             }
+            
+            return Task.CompletedTask;
         },
         denied: static _ => ((Response)"权限不足").Serialize(),
         failed: static _ => ((Response)"未授权").Serialize());
