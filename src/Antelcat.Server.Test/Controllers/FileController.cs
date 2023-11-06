@@ -1,4 +1,6 @@
-﻿using System.Net.Mime;
+﻿using System.Diagnostics;
+using System.Net.Mime;
+using System.Web;
 using Antelcat.Server.Controllers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -14,7 +16,7 @@ public class FileController : BaseController<FileController>
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Assets([FromRoute]string fileName = "Logo.png")
     {
-        var path = Path.Combine(Environment.CurrentDirectory, "wwwroot", fileName);
+        var path = Path.Combine(Environment.CurrentDirectory, "wwwroot", HttpUtility.UrlDecode(fileName));
         return System.IO.File.Exists(path)
             ? new FileContentResult(await System.IO.File.ReadAllBytesAsync(path), MediaTypeNames.Image.Jpeg)
             : new NotFoundResult();
