@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using System.Web;
 using Antelcat.Server.Controllers;
 using Microsoft.AspNetCore.Authentication.Cookies;
