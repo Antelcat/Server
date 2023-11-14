@@ -1,6 +1,5 @@
 ﻿using Antelcat.Attributes;
 using Antelcat.Core.Extensions;
-using Antelcat.Core.Models;
 using Antelcat.Extensions;
 using Antelcat.Server.Controllers;
 using Antelcat.Server.Test.Models;
@@ -22,16 +21,16 @@ namespace Antelcat.Server.Test.Controllers
 
         [HttpPost(nameof(JwtLogin))]
         [AllowAnonymous]
-        public Response<string> JwtLogin([FromBody] User user)
+        public HttpPayload<string> JwtLogin([FromBody] User user)
         {
             var token = configure.CreateToken(user)!;
             Response.Cookies.Append("Authorization", $"Bearer {token}");
-            return new Response<string>(token);
+            return new HttpPayload<string>(token);
         }
 
         [HttpPost(nameof(CookieLogin))]
         [AllowAnonymous]
-        public async Task<Response> CookieLogin([FromBody] User user)
+        public async Task<HttpPayload> CookieLogin([FromBody] User user)
         {
             await SignInAsync(user, "User",
                 new AuthenticationProperties
@@ -43,7 +42,7 @@ namespace Antelcat.Server.Test.Controllers
 
         [HttpGet(nameof(CookieLogout))]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-        public async Task<Response> CookieLogout()
+        public async Task<HttpPayload> CookieLogout()
         {
             await SignOutAsync();
             return (1, "登出成功");
@@ -51,7 +50,7 @@ namespace Antelcat.Server.Test.Controllers
 
         [HttpGet(nameof(WhoAmICookie))]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-        public Response<User> WhoAmICookie()
+        public HttpPayload<User> WhoAmICookie()
         {
             var user = Identity<User>();
             Logger.LogTrace($"{user.Serialize()}");
@@ -60,7 +59,7 @@ namespace Antelcat.Server.Test.Controllers
 
         [HttpGet(nameof(DoctorAllowed))]
         [Authorize(Roles = "Doctor", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-        public Response<User> DoctorAllowed()
+        public HttpPayload<User> DoctorAllowed()
         {
             var user = Identity<User>();
             Logger.LogTrace($"{user.Serialize()}");
@@ -69,7 +68,7 @@ namespace Antelcat.Server.Test.Controllers
 
         [HttpGet(nameof(WhoAmIJwt))]
         [Authorize(Roles = "Doctor", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public Response<User> WhoAmIJwt()
+        public HttpPayload<User> WhoAmIJwt()
         {
             var user = Identity<User>();
             Logger.LogTrace($"{user.Serialize()}");

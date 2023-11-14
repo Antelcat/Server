@@ -1,5 +1,4 @@
 using Antelcat.Core.Extensions;
-using Antelcat.Core.Models;
 using Antelcat.Extensions;
 using Antelcat.Server.Extensions;
 using Antelcat.Server.Test.Hubs;
@@ -21,8 +20,8 @@ builder.Services
             cookie.HttpOnly = true;
             cookie.Name = $"{nameof(Antelcat)}_{nameof(Antelcat.Server)}";
         },
-        denied: static _ => ((Response)"权限不足").Serialize(),
-        failed: static _ => ((Response)"未授权").Serialize())
+        denied: static _ => ((HttpPayload)"权限不足").Serialize(),
+        failed: static _ => ((HttpPayload)"未授权").Serialize())
     .ConfigureJwt<User>(
         configure: jwt =>
         {
@@ -39,8 +38,8 @@ builder.Services
             
             return Task.CompletedTask;
         },
-        denied: static _ => ((Response)"权限不足").Serialize(),
-        failed: static _ => ((Response)"未授权").Serialize());
+        denied: static _ => ((HttpPayload)"权限不足").Serialize(),
+        failed: static _ => ((HttpPayload)"未授权").Serialize());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
