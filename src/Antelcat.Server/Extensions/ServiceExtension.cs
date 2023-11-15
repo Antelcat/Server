@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Data;
+using System.Net;
 using Antelcat.Server.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,4 +24,17 @@ public static partial class ServiceExtension
 
     public static IConfiguration GetConfiguration(this IServiceProvider serviceProvider) =>
         serviceProvider.GetRequiredService<IConfiguration>();
+
+    public static IConfiguration GetConfiguration(this IServiceProvider serviceProvider, string field) =>
+        serviceProvider.GetConfiguration().GetSection(field);
+
+    public static IConfiguration GetConfiguration(this IServiceProvider serviceProvider, params string[] fields) =>
+        serviceProvider.GetConfiguration(string.Join(':', fields));
+    
+    public static string GetConfigurationString(this IServiceProvider serviceProvider, string field) =>
+        serviceProvider.GetConfiguration()[field] 
+        ?? throw new NoNullAllowedException($"Specified filed {field} is null");
+
+    public static string GetConfigurationString(this IServiceProvider serviceProvider, params string[] fields) =>
+        serviceProvider.GetConfigurationString(string.Join(':', fields));
 }
