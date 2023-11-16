@@ -37,4 +37,8 @@ public static partial class ServiceExtension
 
     public static string GetConfigurationString(this IServiceProvider serviceProvider, params string[] fields) =>
         serviceProvider.GetConfigurationString(string.Join(':', fields));
+    
+    public static string GetConfigurationString(this IConfiguration configuration, params string[] fields) =>
+        configuration[string.Join(':', fields)]
+        ?? throw new NoNullAllowedException($"Specified filed {string.Join(':', fields)} is null");
 }
