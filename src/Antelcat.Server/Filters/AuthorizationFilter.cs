@@ -1,69 +1,95 @@
 ﻿using System.Net;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Antelcat.Server.Filters;
 
+[Serializable]
 public sealed class AuthorizationFilter : IOperationFilter
 {
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
         operation.Responses.Clear();
+        string? scheme;
         switch (context.ApiDescription.ActionDescriptor)
         {
             case ControllerActionDescriptor descriptor:
-                if (!WhetherActionNeedAuth(descriptor)) return;
+                if ((scheme = WhetherActionNeedAuth(descriptor)).IsNullOrEmpty())
+                    return;
                 break;
             default:
-                if (AnalyzeAuthRequired(context.ApiDescription.ActionDescriptor.EndpointMetadata) != 1) return;
+                if ((scheme = AnalyzeAuthRequired(context.ApiDescription.ActionDescriptor.EndpointMetadata))
+                    .IsNullOrEmpty())
+                    return;
                 break;
         }
-        operation.Parameters.Add(new OpenApiParameter
+
+        switch (scheme)
         {
-            Name = nameof(Authorization),
-            AllowEmptyValue = true,
-            In = ParameterLocation.Header,
-            Required = true,
-            Description = "This action need auth"
-        });
-        var securityRequirement = new OpenApiSecurityRequirement
-        {
-            {
-                new OpenApiSecurityScheme
+            case JwtBearerDefaults.AuthenticationScheme:
+                operation.Parameters.Add(new OpenApiParameter
                 {
-                    Reference = new OpenApiReference
+                    Name            = nameof(Authorization),
+                    AllowEmptyValue = true,
+                    In              = ParameterLocation.Header,
+                    Required        = true,
+                    Description     = "This action need auth",
+                });
+                var securityRequirement = new OpenApiSecurityRequirement
+                {
                     {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    },
-                    In = ParameterLocation.Header,
-                },
-                new List<string>()
-            }
-        };
-        operation.Security = new List<OpenApiSecurityRequirement> { securityRequirement };
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id   = "Bearer"
+                            },
+                            In = ParameterLocation.Header,
+                        },
+                        new List<string>()
+                    }
+                };
+                operation.Security = new List<OpenApiSecurityRequirement> { securityRequirement };
+                break;
+            case CookieAuthenticationDefaults.AuthenticationScheme:
+                operation.Parameters.Add(new OpenApiParameter
+                {
+                    Name            = nameof(Cookie),
+                    AllowEmptyValue = true,
+                    In              = ParameterLocation.Cookie,
+                    Required        = true,
+                    Description     = "This action need cookie"
+                });
+                break;
+        }
+
     }
-    private static bool WhetherActionNeedAuth(ControllerActionDescriptor descriptor)
+
+    private static string? WhetherActionNeedAuth(ControllerActionDescriptor descriptor)
     {
         var tmp = AnalyzeAuthRequired(descriptor.MethodInfo.GetCustomAttributes(true));
-        return  tmp == -1 
-            ? AnalyzeAuthRequired(descriptor.ControllerTypeInfo.GetCustomAttributes(true)) == 1 
-            : tmp == 1;
+        return tmp.IsNullOrEmpty()
+            ? AnalyzeAuthRequired(descriptor.ControllerTypeInfo.GetCustomAttributes(true))
+            : tmp;
     }
-    private static int AnalyzeAuthRequired(IEnumerable<object> attrs)
+    private static string? AnalyzeAuthRequired(IEnumerable<object> attrs)
     {
         foreach (var attr in attrs)
         {
             switch (attr)
             {
-                case AuthorizeAttribute:
-                    return 1;
+                case AuthorizeAttribute attribute:
+                    return attribute.AuthenticationSchemes;
                 case AllowAnonymousAttribute:
-                    return 0;
+                    return string.Empty;
             }
         }
-        return -1;
+        return null;
     }
 }
