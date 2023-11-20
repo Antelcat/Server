@@ -14,32 +14,22 @@ builder.Services
     .UseAutowiredControllers();
 
 builder.Services
-    .ConfigureSharedCookie<User>(
+    .ConfigureSharedCookie(
         configure: cookie =>
         {
             cookie.HttpOnly = true;
-            cookie.Name = $"{nameof(Antelcat)}_{nameof(Antelcat.Server)}";
-        },
-        denied: static _ => ((HttpPayload)"权限不足").Serialize(),
-        failed: static _ => ((HttpPayload)"未授权").Serialize())
-    .ConfigureJwt<User>(
+            cookie.Name     = $"{nameof(Antelcat)}_{nameof(Antelcat.Server)}";
+            cookie.OnDenied = static _ => ((HttpPayload)"权限不足").Serialize();
+            cookie.OnFailed = static _ => ((HttpPayload)"未授权").Serialize();
+        })
+    .ConfigureJwt(
         configure: jwt =>
         {
-            var guid = Guid.NewGuid().ToString();
-            jwt.Secret = guid;
-            Console.WriteLine(guid);
-        },
-        validation: static (id, context) =>
-        {
-            if (id.Id < 0)
-            {
-                context.Fail("Jwt token invalid");
-            }
-            
-            return Task.CompletedTask;
-        },
-        denied: static _ => ((HttpPayload)"权限不足").Serialize(),
-        failed: static _ => ((HttpPayload)"未授权").Serialize());
+            jwt.Secret      = Guid.NewGuid().ToString();
+            jwt.OnValidated = static _ => Task.CompletedTask;
+            jwt.OnForbidden = static _ => ((HttpPayload)"权限不足").Serialize();
+            jwt.OnFailed    = static _ => ((HttpPayload)"未授权").Serialize();
+        });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();

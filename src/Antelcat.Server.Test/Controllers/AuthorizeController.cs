@@ -23,9 +23,7 @@ namespace Antelcat.Server.Test.Controllers
         [AllowAnonymous]
         public HttpPayload<string> JwtLogin([FromBody] User user)
         {
-            var token = configure.CreateToken(user)!;
-            Response.Cookies.Append("Authorization", $"Bearer {token}");
-            return new HttpPayload<string>(token);
+            return new HttpPayload<string>($"Bearer {configure.CreateToken(user)}");
         }
 
         [HttpPost(nameof(CookieLogin))]
