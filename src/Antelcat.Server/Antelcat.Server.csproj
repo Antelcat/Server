@@ -20,10 +20,8 @@
   </ItemGroup>
 
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.projitems" Label="Shared" />
-
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.projitems" Label="Shared" />
-
-
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\Cookie\Antelcat.Shared.AspNetCore.Authentication.Cookie.projitems" Label="Shared" />
+  <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Middlewares\Antelcat.Shared.AspNetCore.Middlewares.projitems" Label="Shared" />
 
 </Project>

@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAntelcatLogger();
 // Add services to the container.
 builder.Services
-    .AddControllers()
+    .AddAntelcatControllers()
     .AddControllersAsServices()
     .UseAutowiredControllers();
 
