@@ -12,10 +12,12 @@ public class ErrorController : BaseController<ErrorController>
     [HttpGet]
     public async Task<IActionResult> Error()
     {
-        throw (RejectException)(HttpStatusCode.Unauthorized, new
-        Dictionary<string,string>
-        {
-            { "a", "1" }
-        }, "This is an error defined");
+        throw (RejectException)(HttpStatusCode.Unauthorized,
+            new
+            {
+                code = 0,
+                message = "Error occurred"
+            }
+            , "This is an error defined");
     }
 }
