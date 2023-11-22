@@ -46,8 +46,7 @@ public class Tests
             @"D:\Shared\WorkSpace\Git\EasyPathology.Server\extern\Server\src\Antelcat.Server.Test\bin\Debug\net7.0\Logs\Antelcat[2023-11-22].log";
 
         var txt     = File.ReadAllText(path);
-        var logInfo = txt.Deserialize<LogInfo>(SerializeOptions.Default | SerializeOptions.EnumToString);
-        var content = logInfo.Content.Deserialize<Dictionary<string, object>>();
+        var logInfos = $"[{txt}]".Deserialize<List<LogInfo>>(SerializeOptions.Default | SerializeOptions.EnumToString);
         Debugger.Break();
     }
 

@@ -6,7 +6,7 @@ using Antelcat.Server.Test.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAntelcatLogger();
+builder.Services.AddAntelcatLogger(true);
 // Add services to the container.
 builder.Services
     .AddAntelcatControllers()
