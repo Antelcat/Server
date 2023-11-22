@@ -8,6 +8,7 @@ using Antelcat.Extensions;
 using Antelcat.Server.Exceptions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Antelcat.Server.UnitTests;
 
@@ -27,12 +28,13 @@ public class Tests
     [Test]
     public void TestException()
     {
-       
+        var str = JsonSerializer.Serialize("{ A : 1}");
+        Debugger.Break();
         try
         {
-            throw (ServerException)(HttpStatusCode.InternalServerError, null);
+            throw (RejectException)(HttpStatusCode.InternalServerError, null);
         }
-        catch (ServerException ex)
+        catch (RejectException ex)
         {
             var r = ex.ToString();
             Debugger.Break();

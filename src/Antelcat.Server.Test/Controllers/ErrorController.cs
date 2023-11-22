@@ -12,7 +12,7 @@ public class ErrorController : BaseController<ErrorController>
     [HttpGet]
     public async Task<IActionResult> Error()
     {
-        throw (ServerException)(HttpStatusCode.Unauthorized, new
+        throw (RejectException)(HttpStatusCode.Unauthorized, new
         Dictionary<string,string>
         {
             { "a", "1" }
