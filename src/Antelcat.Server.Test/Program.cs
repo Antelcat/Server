@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAntelcatLogger(true);
 // Add services to the container.
 builder.Services
-    .AddAntelcatControllers()
+    .AddControllers()
+    .AddAntelcatFilters()
     .AddControllersAsServices()
     .UseAutowiredControllers();
 
@@ -32,7 +33,6 @@ builder.Services
         });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 builder.Services.AddJwtSwaggerGen();
 builder.Services.AddSignalR();
 builder.Host.UseAutowiredServiceProviderFactory();

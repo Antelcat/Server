@@ -2,6 +2,7 @@
 using Antelcat.Attributes;
 using Antelcat.Core.Interface.Logging;
 using Antelcat.Extensions;
+using Antelcat.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +11,12 @@ namespace Antelcat.Server.Controllers;
 
 public abstract class BaseController<TCategory> : Controller
 {
-    protected TIdentity Identity<TIdentity>() where TIdentity : class
-        => Identity(typeof(TIdentity).RawInstance<TIdentity>());
-    
-    protected TIdentity Identity<TIdentity>(TIdentity from) where TIdentity : class
-        => ((identityCache ??= from.FromClaims(User.Claims)) as TIdentity)!;
-
-    private object? identityCache;
+    protected TIdentity Identity<TIdentity>() where TIdentity : IClaimSerializable, new()
+    {
+        var ret = new TIdentity();
+        ret.FromClaims(User.Claims);
+        return ret;
+    }
 
     [Autowired] protected IAntelcatLogger<TCategory> Logger { get; init; } = null!;
 
@@ -24,17 +24,13 @@ public abstract class BaseController<TCategory> : Controller
         string? authenticationType = "Identity.Application",
         AuthenticationProperties? properties = null,
         string scheme = CookieAuthenticationDefaults.AuthenticationScheme)
-        where TIdentity : class
+        where TIdentity : IClaimSerializable, new()
+
     {
         return Request.HttpContext.SignInAsync(scheme,
-            new ClaimsPrincipal(new ClaimsIdentity(identity.GetClaims(), authenticationType)), properties);
+            new ClaimsPrincipal(new ClaimsIdentity(identity.ToClaims(), authenticationType)), properties);
     }
 
     protected Task SignOutAsync(string scheme = CookieAuthenticationDefaults.AuthenticationScheme) =>
         Request.HttpContext.SignOutAsync(scheme);
-}
-
-public abstract class BaseController<TIdentity, TCategory> : BaseController<TCategory> where TIdentity : class, new()
-{
-    protected TIdentity Identity => Identity(new TIdentity());
 }
