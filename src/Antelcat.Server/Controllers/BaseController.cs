@@ -28,7 +28,7 @@ public abstract class BaseController<TCategory> : Controller
 
     {
         return Request.HttpContext.SignInAsync(scheme,
-            new ClaimsPrincipal(new ClaimsIdentity(identity.ToClaims(), authenticationType)), properties);
+            new ClaimsPrincipal(new ClaimsIdentity(identity.GetClaims(), authenticationType)), properties);
     }
 
     protected Task SignOutAsync(string scheme = CookieAuthenticationDefaults.AuthenticationScheme) =>

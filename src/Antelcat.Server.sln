@@ -27,9 +27,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Antelcat.Shared.AspNetCore.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Antelcat.Shared.AspNetCore.Middlewares", "..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Middlewares\Antelcat.Shared.AspNetCore.Middlewares.shproj", "{BC9E6ECC-3A62-467A-952C-274EF9FF48E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antelcat.Server.UnitTests", "Antelcat.Server.UnitTests\Antelcat.Server.UnitTests.csproj", "{250DDCB6-6D42-45D2-926B-9BA738C4281B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antelcat.Core.SourceGenerators", "..\extern\Core\src\Antelcat.Core.SourceGenerators\Antelcat.Core.SourceGenerators\Antelcat.Core.SourceGenerators.csproj", "{6D08F2B9-F03B-406A-8104-DBA3B6F385A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Server.UnitTests", "Antelcat.Server.UnitTests\Antelcat.Server.UnitTests.csproj", "{250DDCB6-6D42-45D2-926B-9BA738C4281B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +59,6 @@ Global
 		{250DDCB6-6D42-45D2-926B-9BA738C4281B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{250DDCB6-6D42-45D2-926B-9BA738C4281B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{250DDCB6-6D42-45D2-926B-9BA738C4281B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D08F2B9-F03B-406A-8104-DBA3B6F385A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D08F2B9-F03B-406A-8104-DBA3B6F385A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D08F2B9-F03B-406A-8104-DBA3B6F385A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D08F2B9-F03B-406A-8104-DBA3B6F385A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,13 +76,16 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.projitems*{409ad0c0-e7af-40f7-a52b-eaaf4a87cff8}*SharedItemsImports = 13
-		..\extern\Core\extern\Antelcat.Shared\src\Shared\Authentication\Antelcat.Shared.Authentication.projitems*{8b3f6afb-8eac-4287-88b1-27ae63a8aa5d}*SharedItemsImports = 13
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\Cookie\Antelcat.Shared.AspNetCore.Authentication.Cookie.projitems*{7d200d65-e7a7-464e-bc09-19d12869eeb9}*SharedItemsImports = 13
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Middlewares\Antelcat.Shared.AspNetCore.Middlewares.projitems*{bc9e6ecc-3a62-467a-952c-274ef9ff48e5}*SharedItemsImports = 13
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\Cookie\Antelcat.Shared.AspNetCore.Authentication.Cookie.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
-		..\extern\Core\extern\Antelcat.Shared\src\Shared\Authentication\Antelcat.Shared.Authentication.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Middlewares\Antelcat.Shared.AspNetCore.Middlewares.projitems*{d2b51300-ec06-4f56-a78a-5ec554cc3f4f}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.projitems*{d4f9ef9f-57e0-490a-89aa-b382bcc936e3}*SharedItemsImports = 13
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Compare\Antelcat.Shared.Compare.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\DependencyInjection.Autowired\Antelcat.Shared.DependencyInjection.Autowired.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\Exceptions\Antelcat.Shared.Exceptions.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\DebugExtension\Antelcat.Shared.Extensions.DebugExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\EnumExtension\Antelcat.Shared.Extensions.EnumExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\LinqExtension\Antelcat.Shared.Extensions.LinqExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
@@ -99,6 +96,7 @@ Global
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\TimeExtension\Antelcat.Shared.Extensions.TimeExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Extensions\TypeExtension\Antelcat.Shared.Extensions.TypeExtension.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\IL\Antelcat.Shared.IL.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
+		..\extern\Core\extern\Antelcat.Shared\src\Shared\Native\Antelcat.Shared.Native.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Runtime.CompileService\Antelcat.Shared.Runtime.CompileService.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\Serialization\Antelcat.Shared.Serialization.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
 		..\extern\Core\extern\Antelcat.Shared\src\Shared\TypeConvert\Antelcat.Shared.TypeConvert.projitems*{f65e5771-f6d8-460f-8c3a-8df6ff104502}*SharedItemsImports = 5
