@@ -10,6 +10,8 @@ namespace Antelcat.Server.Extensions;
 
 public static partial class ServiceExtension
 {
+    public static T Get<T>(this IServiceProvider serviceProvider) where T : notnull => serviceProvider.GetRequiredService<T>();
+    
     public static IServiceCollection AddJwtSwaggerGen(this IServiceCollection collection,
         Action<SwaggerGenOptions>? config = null)
         => collection.AddSwaggerGen(o =>
