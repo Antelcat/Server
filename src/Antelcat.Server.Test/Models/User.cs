@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
-using Antelcat.Attributes;
-using Antelcat.Interfaces;
+using Antelcat.ClaimSerialization.Attributes;
+using Antelcat.ClaimSerialization.Interfaces;
 
 namespace Antelcat.Server.Test.Models;
 

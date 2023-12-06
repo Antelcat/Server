@@ -1,8 +1,7 @@
 ﻿using System.Security.Claims;
 using Antelcat.Attributes;
+using Antelcat.ClaimSerialization.Interfaces;
 using Antelcat.Core.Interface.Logging;
-using Antelcat.Extensions;
-using Antelcat.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;

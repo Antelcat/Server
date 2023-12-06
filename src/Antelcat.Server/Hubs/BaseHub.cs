@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
-using Antelcat.Extensions;
-using Antelcat.Interfaces;
+using Antelcat.ClaimSerialization.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Antelcat.Server.Hubs;
