@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\extern\Core\src\Antelcat.Core\Antelcat.Core.csproj" />
-    <ProjectReference Include="..\..\extern\RequestMapper\Feast.RequestMapper\Feast.RequestMapper.csproj" />
   </ItemGroup>
 
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.projitems" Label="Shared" />
