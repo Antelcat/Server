@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
-using Antelcat.ClaimSerialization.Attributes;
+using Antelcat.ClaimSerialization.ComponentModel;
 
 namespace Antelcat.Server.Test.Models;
 
-[ClaimSerializable]
 public partial class User
 {
     [Required] public int Id { get; set; } = 10000;

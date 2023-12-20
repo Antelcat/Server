@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using Antelcat.Attributes;
-using Antelcat.ClaimSerialization.Interfaces;
+using Antelcat.ClaimSerialization;
 using Antelcat.Core.Interface.Logging;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -10,12 +10,7 @@ namespace Antelcat.Server.Controllers;
 
 public abstract class BaseController<TCategory> : Controller
 {
-    protected TIdentity Identity<TIdentity>() where TIdentity : IClaimSerializable, new()
-    {
-        var ret = new TIdentity();
-        ret.FromClaims(User.Claims);
-        return ret;
-    }
+    protected TIdentity? Identity<TIdentity>() => ClaimSerializer.Deserialize<TIdentity>(User.Claims);
 
     [Autowired] protected IAntelcatLogger<TCategory> Logger { get; init; } = null!;
 
@@ -23,11 +18,11 @@ public abstract class BaseController<TCategory> : Controller
         string? authenticationType = "Identity.Application",
         AuthenticationProperties? properties = null,
         string scheme = CookieAuthenticationDefaults.AuthenticationScheme)
-        where TIdentity : IClaimSerializable, new()
 
     {
         return Request.HttpContext.SignInAsync(scheme,
-            new ClaimsPrincipal(new ClaimsIdentity(identity.GetClaims(), authenticationType)), properties);
+            new ClaimsPrincipal(new ClaimsIdentity(ClaimSerializer.Serialize(identity), authenticationType)),
+            properties);
     }
 
     protected Task SignOutAsync(string scheme = CookieAuthenticationDefaults.AuthenticationScheme) =>
