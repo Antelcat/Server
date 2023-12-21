@@ -1,5 +1,4 @@
 ﻿using Antelcat.Attributes;
-using Antelcat.Core.Extensions;
 using Antelcat.Extensions;
 using Antelcat.Server.Controllers;
 using Antelcat.Server.Test.Models;
@@ -50,8 +49,8 @@ namespace Antelcat.Server.Test.Controllers
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public HttpPayload<User> WhoAmICookie()
         {
-            var user = Identity<User>();
-            Logger.LogTrace($"{user.Serialize()}");
+            var user = Identity<User>()!;
+            Logger.LogTrace("{Serialize}", user.Serialize());
             return user;
         }
 
@@ -59,17 +58,17 @@ namespace Antelcat.Server.Test.Controllers
         [Authorize(Roles = "Doctor", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public HttpPayload<User> DoctorAllowed()
         {
-            var user = Identity<User>();
-            Logger.LogTrace($"{user.Serialize()}");
+            var user = Identity<User>()!;
+            Logger.LogTrace("{Serialize}", user.Serialize());
             return user;
         }
 
         [HttpGet(nameof(WhoAmIJwt))]
-        [Authorize(Roles = "Doctor", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public HttpPayload<User> WhoAmIJwt()
         {
-            var user = Identity<User>();
-            Logger.LogTrace($"{user.Serialize()}");
+            var user = Identity<User>()!;
+            Logger.LogTrace("{Serialize}", user.Serialize());
             return user;
         }
     }

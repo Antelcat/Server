@@ -6,7 +6,7 @@ namespace Antelcat.Server.Test.Models;
 
 public partial class User
 {
-    [Required] public int Id { get; set; } = 10000;
-    [Required] public string Name { get; set; } = "admin";
-    [Required] [ClaimType(ClaimTypes.Role)] public string Role { get; set; } = "Doctor";
+    public required                              int    Id   { get; init; } = 10000;
+    public required                              string Name { get; init; } = "admin";
+    [ClaimType(ClaimTypes.Role)] public required string Role { get; init; } = "Doctor";
 }
