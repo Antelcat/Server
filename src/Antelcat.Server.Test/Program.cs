@@ -8,7 +8,7 @@ using Antelcat.Server.Test.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAntelcatLogger(static _ => new LoggerConfig().WithLogLevel(LogLevel.Error), true);
-// Add services to the container.
+
 builder.Services
     .AddControllers()
     .AddAntelcatFilters(static _ => { })
@@ -32,7 +32,7 @@ builder.Services
             jwt.OnForbidden = static _ => ((HttpPayload)"权限不足").Serialize();
             jwt.OnFailed    = static _ => ((HttpPayload)"未授权").Serialize();
         });
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddJwtSwaggerGen();
 builder.Services.AddSignalR();
