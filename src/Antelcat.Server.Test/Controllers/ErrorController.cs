@@ -13,13 +13,13 @@ namespace Antelcat.Server.Test.Controllers;
 [Route("[controller]/[action]")]
 public class ErrorController : BaseController<ErrorController>
 {
-    [HttpGet]
-    public async Task<IActionResult> Error()
+    [HttpGet("{statusCode:int}")]
+    public IActionResult Error([FromRoute] int? statusCode = 0)
     {
-        throw (RejectException)(HttpStatusCode.Unauthorized,
+        throw (RejectException)(statusCode ?? 500,
             new
             {
-                code = 0,
+                code    = 0,
                 message = "Error occurred"
             }
             , "This is an error defined");

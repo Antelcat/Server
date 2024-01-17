@@ -1,4 +1,5 @@
 using Antelcat.Core.Extensions;
+using Antelcat.Core.Implements.Loggers;
 using Antelcat.Extensions;
 using Antelcat.Server.Extensions;
 using Antelcat.Server.Test.Hubs;
@@ -6,11 +7,11 @@ using Antelcat.Server.Test.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAntelcatLogger(true);
+builder.Services.AddAntelcatLogger(static _ => new LoggerConfig().WithLogLevel(LogLevel.Error), true);
 // Add services to the container.
 builder.Services
     .AddControllers()
-    .AddAntelcatFilters()
+    .AddAntelcatFilters(static _ => { })
     .AddControllersAsServices()
     .UseAutowiredControllers();
 
