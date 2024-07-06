@@ -12,7 +12,12 @@ public abstract class IdentityController<TIdentity, TCategory> : Controller
 {
     protected TIdentity? Identity => identity.Value;
     
-    private readonly Lazy<TIdentity?> identity = new(() => ClaimSerializer.Deserialize<TIdentity>(User.Claims));
+    private readonly Lazy<TIdentity?> identity;
+
+    protected IdentityController()
+    {
+        identity = new Lazy<TIdentity?>(() => ClaimSerializer.Deserialize<TIdentity>(User.Claims));
+    }
 
     [Autowired] public required IAntelcatLogger<TCategory> Logger { get; init; }
 
