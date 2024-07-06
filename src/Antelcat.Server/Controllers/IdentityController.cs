@@ -8,13 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Antelcat.Server.Controllers;
 
-public abstract class BaseController<TCategory> : Controller
+public abstract class IdentityController<TIdentity, TCategory> : Controller
 {
-    protected TIdentity? Identity<TIdentity>() => ClaimSerializer.Deserialize<TIdentity>(User.Claims);
+    protected TIdentity? Identity => identity.Value;
+    
+    private readonly Lazy<TIdentity?> identity = new(() => ClaimSerializer.Deserialize<TIdentity>(User.Claims));
 
-    [Autowired] protected IAntelcatLogger<TCategory> Logger { get; init; } = null!;
+    [Autowired] public required IAntelcatLogger<TCategory> Logger { get; init; }
 
-    protected Task SignInAsync<TIdentity>(TIdentity identity,
+    protected Task SignInAsync(TIdentity identity,
         string? authenticationType = "Identity.Application",
         AuthenticationProperties? properties = null,
         string scheme = CookieAuthenticationDefaults.AuthenticationScheme)
