@@ -45,7 +45,7 @@ public class Tests
     public void TestLogResult()
     {
         var path =
-            @"D:\Shared\WorkSpace\Git\EasyPathology.Server\extern\Server\src\Antelcat.Server.Test\bin\Debug\net7.0\Logs\Antelcat[2023-11-22].log";
+            @"D:\Shared\WorkSpace\Git\EasyPathology.Server\extern\Server\src\Antelcat.Server.Test\bin\Debug\net8.0\Logs\Antelcat[2023-11-22].log";
 
         var txt     = File.ReadAllText(path);
         var logInfos = $"[{txt}]".Deserialize<List<LogInfo>>(SerializeOptions.Default | SerializeOptions.EnumToString);
