@@ -1,9 +1,9 @@
 ﻿using System.Net;
+using Antelcat.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -23,8 +23,7 @@ public sealed class AuthorizationFilter : IOperationFilter
                     return;
                 break;
             default:
-                if ((scheme = AnalyzeAuthRequired(context.ApiDescription.ActionDescriptor.EndpointMetadata))
-                    .IsNullOrEmpty())
+                if ((scheme = AnalyzeAuthRequired(context.ApiDescription.ActionDescriptor.EndpointMetadata)).IsNullOrEmpty())
                     return;
                 break;
         }
