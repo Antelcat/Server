@@ -12,8 +12,7 @@ builder.Services.AddAntelcatLogger(static _ => new LoggerConfig().WithLogLevel(L
 builder.Services
     .AddControllers()
     .AddAntelcatFilters(static _ => { })
-    .AddControllersAsServices()
-    .UseAutowiredControllers();
+    .AddControllersAsServices();
 
 builder.Services
     .ConfigureSharedCookie(

@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Antelcat.Server.Controllers;
 using Antelcat.Server.Exceptions;
+using Antelcat.Server.Test.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace Antelcat.Server.Test.Controllers;
 
 [ApiController]
 [Route("[controller]/[action]")]
-public class ErrorController : BaseController<ErrorController>
+public class ErrorController : IdentityController<User,ErrorController>
 {
     [HttpGet("{statusCode:int}")]
     public IActionResult Error([FromRoute] int? statusCode = 0)

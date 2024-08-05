@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Antelcat.Core.Test", "..\ex
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{AFAB2210-2573-4C71-A064-C66999E404BB}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Antelcat.Shared.AspNetCore.DependencyInjection.Autowired", "..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.shproj", "{D4F9EF9F-57E0-490A-89AA-B382BCC936E3}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Antelcat.Shared.AspNetCore.Authentication.JwtBearer", "..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.shproj", "{409AD0C0-E7AF-40F7-A52B-EAAF4A87CFF8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore", "AspNetCore", "{8FD7B5E3-7F49-4E71-AD4F-08CD063CC8E0}"
@@ -58,7 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D4F9EF9F-57E0-490A-89AA-B382BCC936E3} = {8FD7B5E3-7F49-4E71-AD4F-08CD063CC8E0}
 		{409AD0C0-E7AF-40F7-A52B-EAAF4A87CFF8} = {1EEB098E-00FC-44A0-9EAC-861FD97FE001}
 		{8FD7B5E3-7F49-4E71-AD4F-08CD063CC8E0} = {AFAB2210-2573-4C71-A064-C66999E404BB}
 		{1EEB098E-00FC-44A0-9EAC-861FD97FE001} = {8FD7B5E3-7F49-4E71-AD4F-08CD063CC8E0}

@@ -13,7 +13,7 @@ namespace Antelcat.Server.Test.Controllers
 {
     [ApiController]
     [Route($"{nameof(Antelcat)}/[controller]")]
-    public class AuthorizeController : BaseController<AuthorizeController>
+    public class AuthorizeController : IdentityController<User,AuthorizeController>
     {
         [Autowired] private readonly JwtConfigure<User> configure = null!;
 
@@ -49,7 +49,7 @@ namespace Antelcat.Server.Test.Controllers
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public HttpPayload<User> WhoAmICookie()
         {
-            var user = Identity<User>()!;
+            var user = Identity!;
             Logger.LogTrace("{Serialize}", user.Serialize());
             return user;
         }
@@ -58,7 +58,7 @@ namespace Antelcat.Server.Test.Controllers
         [Authorize(Roles = "Doctor", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public HttpPayload<User> DoctorAllowed()
         {
-            var user = Identity<User>()!;
+            var user = Identity!;
             Logger.LogTrace("{Serialize}", user.Serialize());
             return user;
         }
@@ -67,7 +67,7 @@ namespace Antelcat.Server.Test.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public HttpPayload<User> WhoAmIJwt()
         {
-            var user = Identity<User>()!;
+            var user = Identity!;
             Logger.LogTrace("{Serialize}", user.Serialize());
             return user;
         }

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Antelcat.AspNetCore.DependencyInjectionEx.Autowired" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
@@ -19,7 +20,6 @@
   </ItemGroup>
 
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\JwtBearer\Antelcat.Shared.AspNetCore.Authentication.JwtBearer.projitems" Label="Shared" />
-  <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\DependencyInjection.Autowired\Antelcat.Shared.AspNetCore.DependencyInjection.Autowired.projitems" Label="Shared" />
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Authentication\Cookie\Antelcat.Shared.AspNetCore.Authentication.Cookie.projitems" Label="Shared" />
   <Import Project="..\..\extern\Core\extern\Antelcat.Shared\src\Shared\AspNetCore\Middlewares\Antelcat.Shared.AspNetCore.Middlewares.projitems" Label="Shared" />
 
